@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import logo from "../assets/800px-CyberPeace_Logo_2023.png";
 
 const Navbar = () => {
-  const [activeLink, setActiveLink] = useState(null);
+  const [activeLink, setActiveLink] = useState(0);
 
   const handleNavLinkClick = (index) => {
-    setActiveLink(index === activeLink ? null : index);
+    setActiveLink(index);
   };
   const handleLinkClick = (link) => {
     setActiveLink(link);
@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="p-4 pl-2 flex items-center justify-between w-screen"> {/* Adjusted left padding */}
+    <nav className="p-4 pl-2 flex items-center justify-between w-screen bg-slate-200"> {/* Adjusted left padding */}
       <Link to="https://www.cyberpeace.org/">
       <div className="flex items-center">
         {/* Logo */}
