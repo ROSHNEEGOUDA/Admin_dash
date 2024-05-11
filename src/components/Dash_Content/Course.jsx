@@ -63,43 +63,47 @@ const Courses = () => {
   return (
     <div className="container mx-auto mt-8">
       <h1>Dashboard/Courses</h1>
-      <div className="grid grid-cols-3 gap-4 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-20">
         {/* First Block */}
         <div
           className="bg-gray-100 rounded-lg flex flex-col items-center"
           style={{ height: "400px" }}
         >
           <h2 className="text-xl font-bold text-center mt-8">Courses</h2>
-          <div className="rounded-lg flex justify-between h-full w-full ml-2">
-          <div
-            className="w-1/2 left-0" style={{widht:"50%", height:"90%"}}>
-            <canvas
-              id="Block1Chart"
-              style={{ width: "70%" }}
-            ></canvas>
-          </div>
-          <div className="w-1/2 right-0">
-          <div className=" mt-28 ml-6 w-44 ">
-              <span className="inline-block h-3 w-3 rounded-full bg-red-700 "></span>
-               <p>No. of Courses not done</p>
-              <span className="inline-block h-3 w-3 rounded-full bg-blue-700 "></span>
-               <p>No. of Courses done</p>
-              
+          <div className="rounded-lg grid grid-cols-2 justify-between h-full w-full ml-2">
+            <div className="w-full h-full flex justify-center items-center">
+              <canvas
+                id="Block1Chart"
+                style={{ maxWidth: "70%", maxHeight: "90%" }}
+              ></canvas>
+            </div>
+            <div className="w-full h-full flex flex-col justify-center items-center">
+              <div className="mt-4 flex justify-end items-center">
+                <span className="grid grid-cols-1 h-3 w-3 rounded-full bg-red-700 "></span>
+                <p className="text-xs text-center ml-2">
+                  No. of Courses not done
+                </p>
+              </div>
+              <div className="mt-4 flex justify-end items-center">
+                <span className="inline-block h-3 w-3 rounded-full bg-blue-700 "></span>
+                <p className="text-xs text-center ml-2">No. of Courses done</p>
+              </div>
             </div>
           </div>
           </div>
-        </div>
 
         {/* Second Block */}
-        <div className="bg-gray-100 p-4 rounded-lg">
+        <div className="bg-gray-100 rounded-lg flex flex-col items-center" style={{height: "400px"}}>
           <h2 className="text-xl font-bold mb-10 text-center">
             Trainer/Volunteers
           </h2>
-          <div className="mt-6" style={{ width: "50%", height: "80%" }}>
-            <canvas
-              id="Block2Chart"
-              style={{ width: "80%", height: "80%" }}
-            ></canvas>
+          <div className="rounded-lg grid grid-cols-2 justify-between h-full w-full ml-2">
+            <div className="w-full h-full flex justify-center items-center">
+              <canvas
+                id="Block2Chart"
+                style={{ maxWidth: "70%", maxHeight: "90%" }}
+              ></canvas>
+            </div>
           </div>
         </div>
 

@@ -87,7 +87,7 @@ const Activities = () => {
         <h1>
             Dashboard/Activites
         </h1>
-      <div className="grid grid-cols-3 gap-4 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-20">
         {/* First Block */}
         <div
           className="bg-gray-100 rounded-lg flex flex-col items-center"
@@ -95,31 +95,37 @@ const Activities = () => {
         >
           <h2 className="text-xl font-bold text-center mt-8">Activites</h2>
           <div className="rounded-lg flex justify-between h-full w-full ml-2">
-          <div
-            className="w-1/2 left-0" style={{widht:"50%", height:"90%"}}>
-            <canvas
-              id="Block1Chart"
-              style={{ width: "70%" }}
-            ></canvas>
-          </div>
-          <div className="w-1/2 right-0">
-          <div className=" mt-28 ml-6 w-44 ">
-              <span className="inline-block h-3 w-3 rounded-full bg-red-700 "></span>
-               <p>No. of Activites not done</p>
-              <span className="inline-block h-3 w-3 rounded-full bg-blue-700 "></span>
-               <p>No. of Activites done</p>
-              
+          <div className="rounded-lg grid grid-cols-2 justify-between h-full w-full ml-2">
+            <div className="w-full h-full flex justify-center items-center">
+              <canvas
+                id="Block1Chart"
+                style={{ maxWidth: "70%", maxHeight: "90%" }}
+              ></canvas>
+            </div>
+            <div className="w-full h-full flex flex-col justify-center items-center">
+              <div className="mt-4 flex justify-end items-center">
+                <span className="grid grid-cols-1 h-3 w-3 rounded-full bg-red-700 "></span>
+                <p className="text-xs text-center ml-2">
+                  No. of Activities not done
+                </p>
+              </div>
+              <div className="mt-4 flex justify-end items-center">
+                <span className="inline-block h-3 w-3 rounded-full bg-blue-700 "></span>
+                <p className="text-xs text-center ml-2">
+                  No. of Activities done
+                </p>
+              </div>
             </div>
           </div>
           </div>
         </div>
 
         {/* Second Block */}
-        <div className="bg-gray-200 p-4 rounded-lg">
+        <div className="bg-gray-200 p-4 rounded-lg flex flex-col justify-center items-center" style={{ height: "400px" }}>
         <h2 className="text-xl font-bold mb-10 text-center">
               Catagories
             </h2>
-          <div className="mt-6" style={{ width: "90%", height: "70%" }}>
+          <div className="grid grid-cols-1 justify-center items-center mt-6" style={{ width: "90%", height: "70%" }}>
             <canvas
               id="BarChart"
               style={{ width: "80%", height: "80%" }}
@@ -128,7 +134,7 @@ const Activities = () => {
         </div>
 
         {/* Third Block */}
-        <div className="bg-gray-200 p-4 rounded-lg">
+        <div className="bg-gray-200 p-4 rounded-lg flex flex-col justify-between items-between">
           <h1 className="text-xl font-semibold">Top 5 Activites</h1>
           <div className="rounded-lg flex justify-between h-full">
               <div className="left-0 w-1/2">
