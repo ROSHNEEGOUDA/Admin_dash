@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from "../assets/800px-CyberPeace_Logo_2023.png";
 
@@ -6,9 +6,19 @@ const Navbar = () => {
   const [activeLink, setActiveLink] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Load active link from localStorage on component mount
+  useEffect(() => {
+    const storedActiveLink = localStorage.getItem('activeLink');
+    if (storedActiveLink !== null) {
+      setActiveLink(parseInt(storedActiveLink));
+    }
+  }, []);
+
   const handleNavLinkClick = (index) => {
     setActiveLink(index);
     setIsMobileMenuOpen(false); // Close mobile menu after clicking a link
+    // Store active link in localStorage
+    localStorage.setItem('activeLink', index);
   };
 
   const toggleMobileMenu = () => {
@@ -89,6 +99,7 @@ const Navbar = () => {
             <Link to="/approve" className="text-black py-2 px-4 hover:bg-gray-200" onClick={() => handleNavLinkClick(2)}>
               Approve
             </Link>
+            <span className={`inline-block w-10 h-1 rounded-full ml-8 ${activeLink === 2 ? 'bg-green-500' : ''}`}></span>
             <Link to="/manage" className="text-black py-2 px-4 hover:bg-gray-200" onClick={() => handleNavLinkClick(3)}>
               Manage 
             </Link>
