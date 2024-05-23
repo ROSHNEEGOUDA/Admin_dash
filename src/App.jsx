@@ -12,6 +12,8 @@ import Induction from './components/Induction';
 import PlanA from './components/Induction_content/PlanA';
 import Indetail from './components/Induction_content/Details';
 import Session from './components/Induction_content/CreateSession';
+import CommunityPage from './components/CommunityPage';
+import ManagePage from './components/Manage';
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
         <Route path="/planA" element={<Layout><PlanA/></Layout>} />
         <Route path="/details" element={<Layout><Indetail/></Layout>} />
         <Route path="/createSession" element={<Layout><Session/></Layout>} />
+        <Route path="/community" element={<Layout><CommunityPage/></Layout>} />
+        <Route path="/manage" element={<Layout><ManagePage/></Layout>} />
       </Routes>
     </Router>
   );

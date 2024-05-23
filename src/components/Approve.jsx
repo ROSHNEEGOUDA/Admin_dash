@@ -5,8 +5,20 @@ import { useMediaQuery } from "react-responsive";
 
 const Approve = () => {
     const [isOpen, setIsOpen] = useState([false, false, false, false]);
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(() => {
+        // Check localStorage for the active index value
+        const storedIndex = localStorage.getItem('activeTabIndex');
+        return storedIndex ? parseInt(storedIndex) : 0; // Default to 0 if no value is found
+    });
     const isMobile = useMediaQuery({ maxWidth: 670 });
+
+    useEffect(() => {
+        setIsOpen(prevState => {
+            const newState = [...prevState];
+            newState[activeIndex] = true;
+            return newState;
+        });
+    }, [activeIndex]);
 
     useEffect(() => {
         setIsOpen(prevState => {
