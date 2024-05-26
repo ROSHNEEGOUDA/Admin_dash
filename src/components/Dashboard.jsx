@@ -9,6 +9,7 @@ import {
   faTasks,
   faArrowUp,
   faArrowRight,
+  faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
 import WorldMap from "../assets/dotted-world-map4757.jpg";
 
@@ -306,56 +307,55 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="container mx-auto mt-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Block 1: Total no of volunteers */}
-        <div className="bg-blue-200 p-4 rounded-lg flex flex-col justify-center items-center">
-          <h2 className="text-lg font-semibold mb-2">Total no of volunteers</h2>
-          {/* Display total number of volunteers */}
-          <p className="text-xl font-bold">{volunteersCount}</p>
-          {/* Font Awesome icon */}
-          <FontAwesomeIcon icon={faUsers} className="text-2xl mt-2" />
+    <div className="container mx-auto mt-20 w-fit">
+      <div className="flex justify-between items-center ">
+        {/* Left content */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full max-w-screen-lg">
+          {/* Block 1: Total no of volunteers */}
+          <div className="bg-blue-200 w-60 h-28 rounded-lg flex flex-col justify-center items-center shadow-xl">
+            <h2 className="text-lg font-semibold mb-2">
+              Total no of volunteers
+            </h2>
+            <p className="text-xl font-bold">{volunteersCount}</p>
+          </div>
+
+          {/* Block 2: No.of Trainers */}
+          <div className="bg-green-200 w-60 h-28 rounded-lg flex flex-col justify-center items-center shadow-xl">
+            <h2 className="text-lg font-semibold mb-2">No.of Trainers</h2>
+            <p className="text-xl font-bold">{trainersCount}</p>
+          </div>
+
+          {/* Block 3: Completed Mandatory Training */}
+          <div className="bg-yellow-200 w-60 h-28 rounded-lg flex flex-col justify-center items-center shadow-xl">
+            <h2 className="text-lg font-semibold mb-2 ml-4">
+              Completed Mandatory Training
+            </h2>
+            <p className="text-xl font-bold">{trainingCount}</p>
+          </div>
+
+          {/* Block 4: Total no. of activities */}
+          <div className="bg-pink-200 w-60 h-28 rounded-lg flex flex-col justify-center items-center shadow-xl">
+            <h2 className="text-lg font-semibold mb-2">
+              Total no. of activities
+            </h2>
+            <p className="text-xl font-bold">{activitiesCount}</p>
+          </div>
         </div>
 
-        {/* Block 2: No.of Trainers */}
-        <div className="bg-green-200 p-4 rounded-lg flex flex-col justify-center items-center">
-          <h2 className="text-lg font-semibold mb-2">No.of Trainers</h2>
-          {/* Display number of trainers */}
-          <p className="text-xl font-bold">{trainersCount}</p>
-          {/* Font Awesome icon */}
-          <FontAwesomeIcon
-            icon={faChalkboardTeacher}
-            className="text-2xl mt-2"
-          />
-        </div>
-
-        {/* Block 3: Completed Mandatory Training */}
-        <div className="bg-yellow-200 p-4 rounded-lg flex flex-col justify-center items-center">
-          <h2 className="text-lg font-semibold mb-2">
-            Completed Mandatory Training
-          </h2>
-          {/* Display number of completed mandatory training */}
-          <p className="text-xl font-bold">{trainingCount}</p>
-          {/* Font Awesome icon */}
-          <FontAwesomeIcon icon={faCheckCircle} className="text-2xl mt-2" />
-        </div>
-
-        {/* Block 4: Total no. of activities */}
-        <div className="bg-pink-200 p-4 rounded-lg flex flex-col justify-center items-center">
-          <h2 className="text-lg font-semibold mb-2">
-            Total no. of activities
-          </h2>
-          <p className="text-xl font-bold">{activitiesCount}</p>
-
-          <FontAwesomeIcon icon={faTasks} className="text-2xl mt-2" />
-        </div>
+        {/* Right content */}
+        <Link>
+          <div className="bg-gray-100 p-4 rounded-md absolute top-24 right-6 w-40">
+            <h2 className="text-lg font-semibold">Last Month</h2>
+            <FontAwesomeIcon icon={faAngleDown} className="absolute top-1/2 transform -translate-y-1/2 left-32 text-gray-600" />
+          </div>
+        </Link>
       </div>
 
       {/* Second Row: World Map and Languages */}
       <div className="flex flex-col md:flex-row mt-8 h-full">
         {/* Block 5: World Map */}
         <div
-          className="bg-purple-200 p-8 rounded-lg flex flex-col justify-center items-center"
+          className="bg-slate-100 p-8 rounded-lg flex flex-col justify-center items-center border border-black shadow-xl shadow-xl" 
           style={{ width: "75%", height: "60vh" }}
         >
           <h2 className="text-lg font-semibold mb-4"></h2>
@@ -368,52 +368,75 @@ const Dashboard = () => {
             />
           </div>
         </div>
-
         {/* Block 6: Languages */}
-        <div className="bg-orange-200 p-8 rounded-lg flex flex-col ml-4 mt-5 lg:mt-0 lg:w-1/4">
-          <h2 className="text-lg font-semibold mb-4">Languages</h2>
+        <div className="bg-orange-200 p-6 rounded-lg flex flex-col ml-4 mt-5 lg:mt-0 lg:w-1/4 border border-black shadow-xl">
+          <div className="flex justify-between w-full">
+            <h2 className="text-xl font-semibold text-center ml-3">Language</h2>
+            <Link to="/courses">
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                className="text-xl relative mr-5 h-6"
+                style={{ transform: "rotate(-45deg)" }}
+              />
+            </Link>
+          </div>
+
           {/* Insert languages component here */}
-          <ul className="font-[500] text-ls">
-            <li>English</li>
-            <li>Hindi</li>
-            <li>Spanish</li>
-            {/* Add more languages as needed */}
-          </ul>
+          <div className="flex justify-between w-full my-7">
+            <ul className="font-[500] text-ls flex flex-col gap-5">
+              <li>English</li>
+              <li>Hindi</li>
+              <li>Spanish</li>
+              {/* Add more languages as needed */}
+            </ul>
+          </div>
         </div>
       </div>
 
       {/* Third Row: Additional Blocks */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
         {/* Block 7 */}
-        <div className="bg-yellow-200 p-4 rounded-lg relative flex flex-col" style={{ height: "400px" }}>
-  <h2 className="text-lg font-semibold mb-10 ml-4 mt-4">Engagement</h2>
-  <div className="w-full h-full grid grid-cols-2 ml-2 rounded-lg">
-    <div className="flex flex-col justify-center items-start">
-      <div className="mt-6 ml-4">
-        <h2 className="text-xl font-[500]">341</h2>
-        <p className="text-sm mt-2">Registration</p>
-      </div>
-      <div className="mt-8 ml-4">
-        <h2 className="text-xl font-[500]">250</h2>
-        <p className="text-sm mt-2">Induction</p>
-      </div>
-      <div className="mt-8 ml-4">
-        <h2 className="text-xl font-[500]">150</h2>
-        <p className="text-sm mt-2">Volunteers</p>
-      </div>
-    </div>
-    <div className="w-full h-full flex justify-start items-start mr-5 lg:w-60 ">
-      <canvas ref={chartRef} style={{ maxWidth: "80%", maxHeight: "95%" }}></canvas>
-    </div>
-  </div>
-</div>
+        <div
+          className="bg-yellow-200 p-3 rounded-lg relative flex flex-col border border-black shadow-xl"
+          style={{ height: "400px" }}
+        >
+          <div className="flex justify-between w-full mt-5">
+            <h2 className="text-2xl font-semibold mb-10 ml-4">Engagement</h2>
+            <FontAwesomeIcon
+              icon={faArrowRight}
+              className="text-xl relative mr-5 h-6"
+              style={{ transform: "rotate(-45deg)" }}
+            />
+          </div>
 
+          <div className="w-full h-1 bg-white"></div>
 
-
+          <div className="w-full h-full grid grid-cols-2 ml-2 rounded-lg">
+            <div className="flex flex-col justify-center items-start">
+              <div className="mt-6 ml-4">
+                <h2 className="text-xl font-[500]">341</h2>
+                <p className="text-sm mt-2">Registration</p>
+              </div>
+              <div className="mt-8 ml-4">
+                <h2 className="text-xl font-[500]">250</h2>
+                <p className="text-sm mt-2">Induction</p>
+              </div>
+              <div className="mt-8 ml-4">
+                <h2 className="text-xl font-[500]">150</h2>
+              </div>
+            </div>
+            <div className="w-full h-full flex justify-start items-start mr-5 lg:w-60 ">
+              <canvas
+                ref={chartRef}
+                style={{ maxWidth: "80%", maxHeight: "95%" }}
+              ></canvas>
+            </div>
+          </div>
+        </div>
 
         {/* Block 8 */}
         <div
-          className="bg-green-200 p-4 rounded-lg relative"
+          className="bg-green-200 p-4 rounded-lg relative border border-black shadow-xl"
           style={{ height: "400px" }}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 h-1/2 absolute top-0 left-0">
@@ -450,7 +473,7 @@ const Dashboard = () => {
 
         {/* Block 9 */}
         <div
-          className="bg-blue-200 p-4 rounded-lg flex flex-col justify-center items-center"
+          className="bg-blue-200 p-4 rounded-lg flex flex-col justify-center items-center border border-black shadow-xl"
           style={{ height: "400px" }}
         >
           <h2 className="text-lg font-semibold mb-2">Block 9</h2>
@@ -459,22 +482,25 @@ const Dashboard = () => {
       </div>
 
       {/* Fourth Row: Next Three Blocks */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6 mb-6">
         {/* Block 10 */}
         <div
-          className="bg-gray-100 rounded-lg flex flex-col items-center"
+          className="bg-gray-200 p-3 rounded-lg flex flex-col items-center border border-black shadow-xl"
           style={{ height: "400px" }}
         >
-          <Link to="/activites">
-            <h2 className="text-xl font-bold text-center mt-8">
-              Activities
+          <div className="flex justify-between w-full mt-8">
+            <h2 className="text-3xl font-semibold text-center ml-8">Activities</h2>
+            <Link to="/activites">
               <FontAwesomeIcon
                 icon={faArrowRight}
-                className="text-xl relative ml-7"
+                className="text-xl relative mr-5 h-6"
                 style={{ transform: "rotate(-45deg)" }}
               />
-            </h2>
-          </Link>
+            </Link>
+          </div>
+
+          <div className="w-full bg-white h-1 mt-4"></div>
+
           <div className="rounded-lg grid grid-cols-2 justify-between h-full w-full ml-2">
             <div className="w-full h-full flex justify-center items-center">
               <canvas
@@ -501,19 +527,21 @@ const Dashboard = () => {
 
         {/* Block 11 */}
         <div
-          className="bg-gray-100 rounded-lg flex flex-col items-center"
+          className="bg-gray-200 p-3 rounded-lg flex flex-col items-center border border-black shadow-xl"
           style={{ height: "400px" }}
         >
-          <Link to="/courses">
-            <h2 className="text-xl font-bold text-center mt-8">
-              LMS Courses
+          <div className="flex justify-between w-full mt-8">
+            <h2 className="text-3xl font-semibold text-center ml-8">LMS Course</h2>
+            <Link to="/courses">
               <FontAwesomeIcon
                 icon={faArrowRight}
-                className="text-xl relative ml-7"
+                className="text-xl relative mr-5 h-6"
                 style={{ transform: "rotate(-45deg)" }}
               />
-            </h2>
-          </Link>
+            </Link>
+          </div>
+
+          <div className="w-full bg-white h-1 mt-4"></div>
           <div className="rounded-lg grid grid-cols-2 justify-between h-full w-full ml-2">
             <div className="w-full h-full flex justify-center items-center">
               <canvas
@@ -538,19 +566,21 @@ const Dashboard = () => {
 
         {/* Block 12 */}
         <div
-          className="bg-gray-200 p-4 rounded-lg flex flex-col justify-center items-center"
+          className="bg-gray-200 p-3 rounded-lg flex flex-col items-center border border-black shadow-xl"
           style={{ height: "400px" }}
         >
-          <Link to="/resourses">
-            <h2 className="text-xl font-bold mb-3">
-              Resources
+          <div className="flex justify-between w-full mt-8">
+            <h2 className="text-3xl font-semibold text-center ml-8">Resourses</h2>
+            <Link to="/resourses">
               <FontAwesomeIcon
                 icon={faArrowRight}
-                className="text-xl relative ml-6"
+                className="text-xl relative mr-5 h-6"
                 style={{ transform: "rotate(-45deg)" }}
               />
-            </h2>
-          </Link>
+            </Link>
+          </div>
+
+          <div className="w-full bg-white h-1 mt-4"></div>
           <div
             className="grid grid-cols-1 justify-center items-center mt-6"
             style={{ width: "90%", height: "70%" }}
