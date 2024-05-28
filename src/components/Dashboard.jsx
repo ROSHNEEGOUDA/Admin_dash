@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import Chart from "chart.js/auto";
+import { Line } from 'react-chartjs-2';
+import { Chart, LineElement, CategoryScale, LinearScale, PointElement } from "chart.js/auto";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUsers,
@@ -10,6 +11,7 @@ import {
   faArrowUp,
   faArrowRight,
   faAngleDown,
+  faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 import WorldMap from "../assets/dotted-world-map4757.jpg";
 
@@ -306,6 +308,30 @@ const Dashboard = () => {
     }
   }, []);
 
+  // Raw data 
+  const countryData = [
+    { name: 'India', users: 85, change: 10 },
+    { name: 'USA', users: 75, change: -5 },
+    { name: 'Canada', users: 50, change: 15 },
+    { name: 'Spain', users: 65, change: -10 },
+    { name: 'Australia', users: 40, change: 5 },
+    { name: 'Germany', users: 90, change: 20 },
+  ];
+
+  const lineChartData = {
+    labels: countryData.map(country => country.name),
+    datasets: [
+      {
+        label: 'Users',
+        data: countryData.map(country => country.users),
+        borderColor: 'blue',
+        backgroundColor: 'rgba(0, 0, 255, 0.1)',
+        fill: true,
+        tension: 0.1,
+      },
+    ],
+  };
+
   return (
     <div className="container mx-auto mt-20 w-fit">
       <div className="flex justify-between items-center ">
@@ -355,19 +381,45 @@ const Dashboard = () => {
       <div className="flex flex-col md:flex-row mt-8 h-full">
         {/* Block 5: World Map */}
         <div
-          className="bg-slate-100 p-8 rounded-lg flex flex-col justify-center items-center border border-black shadow-xl shadow-xl" 
-          style={{ width: "75%", height: "60vh" }}
-        >
-          <h2 className="text-lg font-semibold mb-4"></h2>
-          {/* Insert world map component here */}
-          <div className="w-full h-full bg-gray-500">
-            <img
-              src={WorldMap}
-              alt=""
-              style={{ objectFit: "cover", width: "100%", height: "100%" }}
-            />
-          </div>
+  className="bg-slate-100 p-8 rounded-lg flex flex-col lg:flex-row justify-center items-center border border-black shadow-xl"
+  style={{ width: "100%", height: "60vh" }}
+>
+  {/* Left div for the world map */}
+  <div className="w-full lg:w-full h-1/2 lg:h-full bg-gray-500 mb-4 lg:mb-0">
+    <img
+      src={WorldMap}
+      alt="World Map"
+      style={{ objectFit: "cover", width: "100%", height: "100%" }}
+    />
+  </div>
+
+  {/* Right div for the information box */}
+  <div className="w-full lg:w-1/2 h-1/2 lg:h-full flex flex-col justify-center items-center">
+    <div className="bg-white border border-black rounded-lg shadow-lg p-4 flex flex-col w-full overflow-y-auto">
+      <div className="flex justify-between items-center border-b border-gray-300 pb-2">
+        <span className="text-lg font-semibold">Country</span>
+        <span className="text-lg font-semibold">Users</span>
+      </div>
+      {countryData.map((country) => (
+        <div key={country.name} className="flex justify-between items-center border-b last:border-b-0 border-gray-300 py-2">
+          <span className="text-lg">{country.name}</span>
+          <span className="text-lg flex items-center">
+            {country.users}
+            <span className={`flex items-center ml-2 ${country.change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+              {country.change}%
+              {country.change >= 0 ? (
+                <FontAwesomeIcon icon={faArrowUp} className="ml-1" />
+              ) : (
+                <FontAwesomeIcon icon={faArrowDown} className="ml-1" />
+              )}
+            </span>
+          </span>
         </div>
+      ))}
+    </div>
+  </div>
+</div>
+
         {/* Block 6: Languages */}
         <div className="bg-orange-200 p-6 rounded-lg flex flex-col ml-4 mt-5 lg:mt-0 lg:w-1/4 border border-black shadow-xl">
           <div className="flex justify-between w-full">
